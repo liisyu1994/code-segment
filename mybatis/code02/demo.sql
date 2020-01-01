@@ -1,0 +1,13 @@
+SET NAMES utf8;
+SET FOREIGN_KEY_CHECKS = 0;
+DROP TABLE IF EXISTS `user`;
+CREATE TABLE `user`(
+	`id` int(11) NOT NULL AUTO_INCREMENT,
+	`user_id` int(11) NOT NULL,
+	`name` VARCHAR(20) NOT NULL,
+	PRIMARY KEY(`id`)
+)ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+
+BEGIN;
+INSERT INTO `user`(`user_id`,`name` ) VALUES ('1', 'liisyu');
+COMMIT;
