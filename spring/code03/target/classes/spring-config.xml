@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+    <!-- 加载属性文件-->
+    <context:property-placeholder location="classpath:db.properties"/>
+    <!-- 配置数据源 -->
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="${db.driverClassName}"/>
+        <property name="url" value="${db.url}"/>
+        <property name="username" value="${db.username}"/>
+        <property name="password" value="${db.password}"/>
+    </bean>
+
+<!--    配置sqlSessionFactory实例-->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+<!--        加载mybatis配置文件-->
+        <property name="configLocation" value="mybatis-config.xml"/>
+<!--        记载数据源-->
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+<!--    配置mapper,注意这里会产生两个bean,一个是userMapper,另一个则是IUserMapper的bean-->
+    <bean id="userMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface" value="com.liisyu.IUserMapper" />
+        <property name="sqlSessionFactory" ref="sqlSessionFactory" />
+    </bean>
+
+<!--    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">-->
+<!--        &lt;!&ndash; 指定需要生成代理的接口所在的包名 &ndash;&gt;-->
+<!--        <property name="basePackage" value="com.liisyu"/>-->
+<!--        &lt;!&ndash; 注意事项：千万不要配置SqlSessionFactory，要配置sqlSessionFactoryBeanName &ndash;&gt;-->
+<!--        &lt;!&ndash; <property name="sqlSessionFactory" ref="sqlSessionFactory"></property> &ndash;&gt;-->
+<!--        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>-->
+<!--    </bean>-->
+
+</beans>
