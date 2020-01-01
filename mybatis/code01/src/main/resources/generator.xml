@@ -7,6 +7,7 @@
     <!--导入属性配置-->
     <properties resource="datasource.properties"/>
 
+
     <context id="default" targetRuntime="MyBatis3">
 
         <!-- optional，旨在创建class时，对注释进行控制 -->

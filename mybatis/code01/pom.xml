@@ -13,35 +13,37 @@
         <mybatis.generator.version>1.3.5</mybatis.generator.version>
         <mybatis.version>3.4.1</mybatis.version>
     </properties>
-<dependencies>
+    <dependencies>
 
-    <!-- https://mvnrepository.com/artifact/org.mybatis/mybatis -->
-    <dependency>
-        <groupId>org.mybatis</groupId>
-        <artifactId>mybatis</artifactId>
-        <version>${mybatis.version}</version>
-    </dependency>
+        <!-- https://mvnrepository.com/artifact/org.mybatis/mybatis -->
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis</artifactId>
+            <version>${mybatis.version}</version>
+        </dependency>
 
 
-</dependencies>
-<build>
-    <plugins>
-        <plugin>
-            <groupId>org.mybatis.generator</groupId>
-            <artifactId>mybatis-generator-maven-plugin</artifactId>
-            <version>${mybatis.generator.version}</version>
-            <dependencies>
-                <dependency>
-                    <groupId>mysql</groupId>
-                    <artifactId>mysql-connector-java</artifactId>
-                    <version>${mysql.connector.version}</version>
-                </dependency>
-            </dependencies>
-            <configuration>
-                <verbose>true</verbose>
-                <overwrite>true</overwrite>
-            </configuration>
-        </plugin>
-    </plugins>
-</build>
+    </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.mybatis.generator</groupId>
+                <artifactId>mybatis-generator-maven-plugin</artifactId>
+                <version>${mybatis.generator.version}</version>
+                <dependencies>
+                    <dependency>
+                        <groupId>mysql</groupId>
+                        <artifactId>mysql-connector-java</artifactId>
+                        <version>${mysql.connector.version}</version>
+                    </dependency>
+                </dependencies>
+                <configuration>
+                    <verbose>true</verbose>
+                    <overwrite>true</overwrite>
+                    <!--  手动选择mybatis-generator配置文件  -->
+                    <!-- <configurationFile>src/main/resources/generator.xml</configurationFile>-->
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>
